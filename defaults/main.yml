@@ -1,0 +1,71 @@
+---
+#Copyright 2020 Carnegie Mellon University.
+#NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN "AS-IS" BASIS. CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND, EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT NOT LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR MERCHANTABILITY, EXCLUSIVITY, OR RESULTS OBTAINED FROM USE OF THE MATERIAL. CARNEGIE MELLON UNIVERSITY DOES NOT MAKE ANY WARRANTY OF ANY KIND WITH RESPECT TO FREEDOM FROM PATENT, TRADEMARK, OR COPYRIGHT INFRINGEMENT.
+#Released under a MIT (SEI)-style license, please see license.txt or contact permission@sei.cmu.edu for full terms.
+#[DISTRIBUTION STATEMENT A] This material has been approved for public release and unlimited distribution.  Please see Copyright notice for non-US Government use and distribution.
+#CERT® is registered in the U.S. Patent and Trademark Office by Carnegie Mellon University.
+#This Software includes and/or makes use of the following Third-Party Software subject to its own license:
+#1. ansible (https://github.com/ansible/ansible/tree/devel/licenses) Copyright 2019 Red Hat, Inc.
+#2. molecule (https://github.com/ansible-community/molecule/blob/master/LICENSE) Copyright 2018 Red Hat, Inc.
+#3. testinfra (https://github.com/philpep/testinfra/blob/master/LICENSE) Copyright 2020 Philippe Pepiot.
+#DM20-0505
+# defaults file for rwreceiver
+silk_packing_tools_loc: "/usr/local/sbin"
+silk_tls_support: False
+
+rwreceiver_myname: "rwreceiver"
+rwreceiver_conf_template: "rwreceiver.conf.j2"
+rwreceiver_conf_file_loc: "/usr/local/etc"
+rwreceiver_conf_file_path: "{{ rwreceiver_conf_file_loc }}/{{ rwreceiver_myname }}.conf"
+rwreceiver_init_template: "rwreceiver.j2"
+rwreceiver_init_file_path: "/etc/init.d/{{ rwreceiver_myname }}"
+
+rwreceiver_service: True
+rwreceiver_statedirectory: "/usr/local/var/lib/rwreceiver"
+rwreceiver_create_directories: "no"
+rwreceiver_bin_dir: "{{ silk_packing_tools_loc }}"
+rwreceiver_destination_dir: "{{ rwreceiver_statedirectory }}/destination"
+rwreceiver_mode: "client"
+rwreceiver_id: "receiver-1"
+rwreceiver_port: ""
+rwreceiver_post_command: ""
+# Example POST_COMMAND:
+#    rwreceiver_post_command: |
+#      'echo received file %s from rwsender %I'
+rwreceiver_freespace_min: "0"
+rwreceiver_space_max_percent: "100"
+rwreceiver_sender_servers: ""
+# Example SENDER_SERVERS:
+#    rwreceiver_sender_servers: |
+#        sender-1  machine.test.org:9999
+#        sender-2  192.168.100.10:9998
+#        sender-3  [2001:db8:c0:a8::64:a]:9997
+rwreceiver_sender_clients: ""
+# Example SENDER_CLIENTS:
+#    rwreceiver_sender_clients: |
+#        sender-1
+#        sender-2
+#        sender-3
+rwreceiver_duplicate_dirs: ""
+# Example DUPLICATE_DIRS:
+#    rwreceiver_duplicate_dirs: |
+#        /var/rwreceiver/duplicate-dest2
+#        /var/rwreceiver/duplicate-dest3
+rwreceiver_duplicate_copies: "link"
+
+rwreceiver_tls_ca: ""
+rwreceiver_tls_pkcs: ""
+rwreceiver_tls_key: ""
+rwreceiver_tls_cert: ""
+rwreceiver_tls_crl: ""
+rwreceiver_tls_priority: ""
+rwreceiver_tls_security: ""
+rwreceiver_tls_debug_level: ""
+
+rwreceiver_log_type: "syslog"
+rwreceiver_log_level: "info"
+rwreceiver_log_dir: "{{ rwreceiver_statedirectory }}/log"
+rwreceiver_pid_dir: "{{ rwreceiver_log_dir }}"
+
+rwreceiver_user: "root"
+rwreceiver_extra_options: ""
